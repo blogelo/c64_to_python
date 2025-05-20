@@ -4,6 +4,7 @@ import time
 
 # Videokatalógus program Python verzió
 # Eredeti: Commodore 64 BASIC V2
+# VHS kazetták nyilvántartására készült
 
 class VideoKatalogus:
     def __init__(self):
