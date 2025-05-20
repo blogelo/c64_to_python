@@ -37,8 +37,10 @@ class SzerencseKerek:
             print(' '.join(titkositott))
             print(f"Feladvány típusa: {feladvany[1]}")
             
-            valasztas = input("Pörgetés (P) vagy Megfejtés (M): ").upper()
-            
+            valasztas = input("Pörgetés (P), Megfejtés (M), vagy Kilépés (Q): ").upper()
+            if valasztas == 'Q':
+                print("Kilépés a játékból. Viszlát!")
+                exit()
             if valasztas == 'P':
                 eredmeny, szorzo = random.choice(self.kereso)
                 print(f"Pörgetett érték: {eredmeny}")
