@@ -58,14 +58,17 @@ class SzerencseKerek:
                     continue  # Nem szakítjuk meg a játékmenetet, csak játékost váltunk
                 
                 start_time = time.time()
-                betu = input("Adj meg egy mássalhangzót: ").upper()
-                if time.time() - start_time > 25:
-                    print("Időkorlát lejárt!")
-                    aktualis_jatekos = 1 - aktualis_jatekos
-                    continue
-                
-                while not self.ervenyes_betu(betu, hasznalt_betuk):
-                    betu = input("Érvénytelen betű! Újra: ").upper()
+                while True:
+                    betu = input("Adj meg egy mássalhangzót: ").upper()
+                    if time.time() - start_time > 25:
+                        print("Időkorlát lejárt!")
+                        aktualis_jatekos = 1 - aktualis_jatekos
+                        break
+                    if self.ervenyes_betu(betu, hasznalt_betuk):
+                        hasznalt_betuk.add(betu)  # csak itt adjuk hozzá!
+                        break
+                    else:
+                        print("Érvénytelen betű! Újra:")
                 
                 talalat = self.betu_ellenorzes(feladvany[0], betu, titkositott)
                 if talalat > 0:
@@ -121,7 +124,6 @@ class SzerencseKerek:
         if betu in hasznalt:
             print("Ezt már kitaláltad!")
             return False
-        hasznalt.add(betu)
         return True
 
     def eredmeny_kijelzo(self):
